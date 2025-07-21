@@ -8,8 +8,11 @@ import numpy as np
 import base64
 import logging
 
-# Logging konfigürasyonu
-logging.basicConfig(level=logging.INFO)
+# Logging configuration
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
