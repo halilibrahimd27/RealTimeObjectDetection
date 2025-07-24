@@ -1,9 +1,9 @@
 <div class="upload-page">
     <div class="overlay-card">
       <div class="upload-container">
-        <h2>Görsel Yükle</h2>
+        <h2>Nesne Tespiti - Görsel Yükle</h2>
         <input type="file" (change)="onFileSelected($event)" accept="image/*" />
-        <button (click)="onSubmit()" [disabled]="isLoading">Gönder</button>
+        <button (click)="onSubmit()" [disabled]="isLoading">Analiz Et</button>
   
         <div *ngIf="isLoading" class="loading-message">
           <p>Yükleniyor...</p>
