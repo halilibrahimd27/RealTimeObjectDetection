@@ -1,0 +1,13 @@
+train: /Users/halil/Halil/projects/YOLOBasedRealTimeObjectDetection/backendd/dataset/train/images
+val: /Users/halil/Halil/projects/YOLOBasedRealTimeObjectDetection/backendd/dataset/valid/images
+test: /Users/halil/Halil/projects/YOLOBasedRealTimeObjectDetection/backendd/dataset/test/images
+
+nc: 13
+names: ['canta', 'cuzdan', 'dolap', 'gozluk', 'insan', 'klavye', 'kolsaati', 'laptop', 'masa', 'mause', 'monitor', 'sandalye', 'sise']
+
+roboflow:
+  workspace: yolo-u0uiv
+  project: yapayzeka2-ysbz4
+  version: 3
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/yolo-u0uiv/yapayzeka2-ysbz4/dataset/3

@@ -1,0 +1,142 @@
+/* Genel Sayfa Yapısı */
+.upload-page {
+    height: 100vh;
+    background-image: url('../../assets/2.webp');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  /* Saydam Kart Panel */
+  .overlay-card {
+    background: rgba(0, 0, 0, 0.65);
+    max-width: 600px;
+    width: 100%;
+    padding: 30px;
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-height: 90vh; /* Sayfa taşmasın */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .upload-container {
+    overflow-y: auto;
+    max-height: 80vh; /* Karttan biraz küçük */
+    padding-right: 10px;
+  }
+  
+  
+  /* Başlık */
+  .overlay-card h2 {
+    font-size: 30px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 25px;
+  }
+  
+  /* Dosya Seçme Input */
+  input[type="file"] {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+  }
+  
+  input[type="file"]:hover {
+    border-color: #4a90e2;
+  }
+  
+  /* Gönder Butonu */
+  button {
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 10px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  button:hover:not(:disabled) {
+    background-color: #357ac9;
+    transform: scale(1.04);
+  }
+  
+  button:disabled {
+    background-color: #7fb3ec;
+    cursor: not-allowed;
+  }
+  
+  /* Spinner ve Yükleme */
+  .spinner-border {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  
+  .loading-message {
+    color: #f1f1f1;
+    font-style: italic;
+    margin-top: 20px;
+    animation: pulse 1.5s infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 0.6;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  
+  /* İşlenmiş Görsel */
+  img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    margin-top: 15px;
+  }
+  
+  /* Etiketler ve Alt Başlık */
+  label, h5 {
+    color: #f1f1f1;
+    font-weight: 500;
+  }
+  /* Nesne sayıları ve türlerini göstermek için stil */
+.object-info {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  
+  .object-info h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .object-info ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .object-info li {
+    margin: 5px 0;
+  }
+  
+  
