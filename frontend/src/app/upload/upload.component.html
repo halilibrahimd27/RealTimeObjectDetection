@@ -17,20 +17,18 @@
   
         <!-- Nesne türleri ve sayıları -->
         <div *ngIf="objectCounts && getObjectKeys().length > 0" class="object-info">
-          <h3>Bulunan Nesneler:</h3>
+          <h3>Tespit Edilen Nesneler:</h3>
           <ul>
             <li *ngFor="let key of getObjectKeys()">
-              {{ key }}: {{ objectCounts[key] }}
+              <strong>{{ key }}</strong>: {{ objectCounts[key] }} adet
             </li>
           </ul>
         </div>
   
         <!-- Eğer objectCounts boşsa -->
-        <div *ngIf="!objectCounts || getObjectKeys().length === 0" >
+        <div *ngIf="!objectCounts || getObjectKeys().length === 0" class="no-detection">
           <p>Henüz herhangi bir nesne tespit edilmedi.</p>
         </div>
       </div>
     </div>
   </div>
-
-  
