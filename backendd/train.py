@@ -3,14 +3,14 @@ from ultralytics import YOLO
 import logging
 from pathlib import Path
 
-# Logging konfigürasyonu
+# Logging configuration
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
 
-# Konfigürasyon
+# Training configuration
 CONFIG = {
     'model_name': 'yolov8n.pt',
     'data_yaml': '/Users/halil/Halil/projects/YOLOBasedRealTimeObjectDetection/backendd/dataset2/data.yaml',
@@ -18,6 +18,7 @@ CONFIG = {
     'batch': 4,
     'imgsz': 640,
     'patience': 5,
+    'device': 'auto',  # Automatically select best device
 }
 
 def train_model():
