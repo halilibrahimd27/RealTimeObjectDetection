@@ -18,20 +18,26 @@ logger = logging.getLogger(__name__)
 app = Flask(__name__)
 CORS(app)
 
-# YOLO model yolunu belirt
+# YOLO model configuration
 MODEL_PATH = r'/Users/halil/Halil/projects/YOLOBasedRealTimeObjectDetection/backendd/train50/weights/best.pt'
 model = YOLO(MODEL_PATH)
 logger.info(f"YOLO model loaded from: {MODEL_PATH}")
 
-# Çıktı klasörü
+# Output directory configuration
 output_folder = "Kaydedilenler"
 os.makedirs(output_folder, exist_ok=True)
+logger.info(f"Output folder ready: {output_folder}")
 
 @app.route('/predict', methods=['POST'])
 def detect_objects():
+    """
+    Endpoint for object detection on uploaded images
+    Returns: JSON with detected objects and annotated image
+    """
     # Fotoğrafı al
     image_file = request.files.get('image')
     if not image_file:
+        logger.warning("Request received without image file")
         return jsonify({"error": "Image file is missing"}), 400
 
     # Fotoğrafı numpy array'e dönüştür
