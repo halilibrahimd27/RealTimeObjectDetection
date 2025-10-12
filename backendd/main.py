@@ -6,12 +6,19 @@ from ultralytics import YOLO
 from io import BytesIO
 import numpy as np
 import base64
+import logging
+
+# Logging konfigürasyonu
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 CORS(app)
-#C:\Users\Halil\Desktop\yolo\runs\detect\train35\weights\best.pt
+
 # YOLO model yolunu belirt
-model = YOLO(r'/Users/halil/Halil/projects/YOLOBasedRealTimeObjectDetection/backendd/train50/weights/best.pt')
+MODEL_PATH = r'/Users/halil/Halil/projects/YOLOBasedRealTimeObjectDetection/backendd/train50/weights/best.pt'
+model = YOLO(MODEL_PATH)
+logger.info(f"YOLO model loaded from: {MODEL_PATH}")
 
 # Çıktı klasörü
 output_folder = "Kaydedilenler"
