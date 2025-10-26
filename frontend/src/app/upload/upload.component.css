@@ -1,34 +1,60 @@
 /* Genel Sayfa Yapısı */
 .upload-page {
-    height: 100vh;
+    min-height: 100vh;
     background-image: url('../../assets/2.webp');
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
   }
   
   /* Saydam Kart Panel */
   .overlay-card {
-    background: rgba(0, 0, 0, 0.65);
-    max-width: 600px;
+    background: rgba(0, 0, 0, 0.75);
+    max-width: 700px;
     width: 100%;
-    padding: 30px;
-    border-radius: 16px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    max-height: 90vh; /* Sayfa taşmasın */
+    padding: 40px;
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    max-height: 90vh;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    transition: transform 0.3s ease;
+  }
+  
+  .overlay-card:hover {
+    transform: translateY(-5px);
   }
   
   .upload-container {
     overflow-y: auto;
-    max-height: 80vh; /* Karttan biraz küçük */
+    max-height: 80vh;
     padding-right: 10px;
+  }
+  
+  /* Custom Scrollbar */
+  .upload-container::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .upload-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+  }
+  
+  .upload-container::-webkit-scrollbar-thumb {
+    background: rgba(74, 144, 226, 0.6);
+    border-radius: 10px;
+  }
+  
+  .upload-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(74, 144, 226, 0.8);
   }
   
   
