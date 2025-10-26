@@ -39,6 +39,7 @@ def detect_objects():
         return jsonify({"error": "Invalid image"}), 400
 
     # YOLO modeliyle tahmin yap
+    logger.info("Running inference on uploaded image")
     results = model(image)
 
     # Tespit edilen nesneleri topla
@@ -46,8 +47,9 @@ def detect_objects():
     image_with_boxes = image.copy()
 
     for result in results[0].boxes:
-        label = int(result.cls[0])                  # Nesne sınıfı
-        name = model.names[label]                   # Sınıf ismi
+        label = int(result.cls[0])
+        name = model.names[label]
+        confidence = float(result.conf[0])
         detected_objects.append(name)
 
         # Kutu koordinatları (x1, y1, x2, y2)
@@ -56,16 +58,19 @@ def detect_objects():
         # Kutu çiz
         cv2.rectangle(image_with_boxes, (x1, y1), (x2, y2), (0, 255, 0), 2)
 
-        # Sadece nesne ismini yaz (confidence yazılmaz)
-        cv2.putText(image_with_boxes, name, (x1, y1 - 10),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
+        # Nesne ismi ve confidence değeri
+        label_text = f"{name} {confidence:.2f}"
+        cv2.putText(image_with_boxes, label_text, (x1, y1 - 10),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
 
     # Nesnelerin sayısını al
     object_count = {obj: detected_objects.count(obj) for obj in set(detected_objects)}
+    logger.info(f"Detected objects: {object_count}")
 
     # Annotated image'i kaydet
     output_path = os.path.join(output_folder, "detected_sample.jpg")
     cv2.imwrite(output_path, image_with_boxes)
+    logger.info(f"Saved detection result to {output_path}")
 
     # Annotated image'i base64 formatına dönüştür
     _, buffer = cv2.imencode('.jpg', image_with_boxes)
@@ -73,7 +78,12 @@ def detect_objects():
     img_base64 = base64.b64encode(img_byte_arr.getvalue()).decode('utf-8')
 
     # JSON olarak döndür
-    return jsonify({'image': img_base64, 'object_count': object_count})
+    return jsonify({
+        'image': img_base64, 
+        'object_count': object_count,
+        'total_objects': len(detected_objects)
+    })
 
 if __name__ == '__main__':
+    logger.info("Starting Flask server on port 5001")
     app.run(host='0.0.0.0', port=5001, debug=True)
