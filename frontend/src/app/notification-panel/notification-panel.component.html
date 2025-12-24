@@ -1,0 +1,91 @@
+<div class="notification-wrapper">
+  <!-- Notification Bell Button -->
+  <button class="notification-bell" (click)="toggle()" [class.has-unread]="unreadCount > 0">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+      <path d="M13.73 21a2 2 0 01-3.46 0"/>
+    </svg>
+    <span *ngIf="unreadCount > 0" class="badge">{{ unreadCount > 9 ? '9+' : unreadCount }}</span>
+  </button>
+
+  <!-- Notification Panel -->
+  <div class="notification-panel" [class.open]="isOpen">
+    <div class="panel-header">
+      <h3>Bildirimler</h3>
+      <div class="header-actions">
+        <button *ngIf="notifications.length > 0" class="action-btn" (click)="markAllAsRead()" title="Tümünü okundu işaretle">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 11 12 14 22 4"/>
+            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+          </svg>
+        </button>
+        <button class="close-btn" (click)="close()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Permission Request -->
+    <div *ngIf="!permissionGranted" class="permission-banner">
+      <div class="permission-content">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+          <path d="M13.73 21a2 2 0 01-3.46 0"/>
+        </svg>
+        <div>
+          <p class="permission-title">Bildirimleri Aç</p>
+          <p class="permission-desc">Nesne tespiti sonuçlarından haberdar olun</p>
+        </div>
+      </div>
+      <button class="permission-btn" (click)="requestPermission()">İzin Ver</button>
+    </div>
+
+    <!-- Notifications List -->
+    <div class="notifications-list">
+      <div *ngIf="notifications.length === 0" class="empty-state">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+          <path d="M13.73 21a2 2 0 01-3.46 0"/>
+          <line x1="1" y1="1" x2="23" y2="23"/>
+        </svg>
+        <p>Henüz bildirim yok</p>
+      </div>
+
+      <div 
+        *ngFor="let notification of notifications" 
+        class="notification-item"
+        [class.unread]="!notification.read"
+        (click)="markAsRead(notification)">
+        <span class="notification-icon">{{ getNotificationIcon(notification.type) }}</span>
+        <div class="notification-content">
+          <p class="notification-title">{{ notification.title }}</p>
+          <p class="notification-body">{{ notification.body }}</p>
+          <span class="notification-time">{{ getTimeAgo(notification.timestamp) }}</span>
+        </div>
+        <button class="delete-btn" (click)="deleteNotification($event, notification)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Clear All Button -->
+    <div *ngIf="notifications.length > 0" class="panel-footer">
+      <button class="clear-all-btn" (click)="clearAll()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="3 6 5 6 21 6"/>
+          <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+        </svg>
+        Tümünü Temizle
+      </button>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div class="panel-overlay" [class.active]="isOpen" (click)="close()"></div>
+</div>

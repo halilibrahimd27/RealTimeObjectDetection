@@ -4,16 +4,22 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UploadComponent } from './upload/upload.component';
+import { HeaderComponent } from './header/header.component';
+import { NotificationPanelComponent } from './notification-panel/notification-panel.component';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
-    UploadComponent
+    UploadComponent,
+    HeaderComponent,
+    NotificationPanelComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    
+    CommonModule
   ],
   providers: [
     provideClientHydration(),
@@ -22,3 +28,5 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
