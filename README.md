@@ -189,9 +189,11 @@ YOLOBasedRealTimeObjectDetection/
 
 ## 📸 Ekran Görüntüleri
 
-| Ana Sayfa | Tespit Sonucu | Bildirimler |
-|-----------|---------------|-------------|
-| ![Home](docs/home.png) | ![Detection](docs/detection.png) | ![Notifications](docs/notifications.png) |
+| Ana Sayfa | Bildirimler |
+|-----------|-------------|
+| <img width="1710" height="990" alt="image" src="https://github.com/user-attachments/assets/a111e591-ba39-4b87-84b2-c4602a45ded6" />
+ | <img width="1710" height="998" alt="image" src="https://github.com/user-attachments/assets/054956c9-42b7-4850-8189-1df168162606" />
+|
 
 ---
 
